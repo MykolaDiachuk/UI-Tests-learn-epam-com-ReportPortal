@@ -13,17 +13,20 @@ public class DriverFactory {
 
     static WebDriver createDriver(String browser) {
         WebDriver driver;
+        boolean headless = Boolean.parseBoolean(ConfigReader.getProperty("headless"));
 
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--force-device-scale-factor=0.8");
+                if (headless) options.addArguments("--headless=new");
                 driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
                 break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addPreference("layout.css.devPixelsPerPx", "0.8");
+                if (headless) firefoxOptions.addArguments("--headless=new");
                 driver = new FirefoxDriver(firefoxOptions);
                 driver.manage().window().maximize();
                 break;

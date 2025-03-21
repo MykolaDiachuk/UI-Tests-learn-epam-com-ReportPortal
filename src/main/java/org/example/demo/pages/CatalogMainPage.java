@@ -61,7 +61,7 @@ public class CatalogMainPage extends BasePage {
     public CourseEntityPage goToCourse(String courseName) {
         logger.info("Go to course: {}", courseName);
         WebElement courseLink = waitForElementToBePresent(getCourseLocator(courseName));
-        courseLink.click();
+        clickElementWithJS(courseLink);
         return new CourseEntityPage();
     }
 

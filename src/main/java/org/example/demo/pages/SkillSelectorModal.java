@@ -35,7 +35,7 @@ public class SkillSelectorModal extends BasePage {
     private void selectSkillFromResults(String skillName) {
         logger.info("Selecting skill '{}' from results in modal", skillName);
         WebElement skillOption = waitForElementToBeClickable(getSkillLocator(skillName));
-        skillOption.click();
+        clickElementWithJS(skillOption);
     }
 
     private void clearSearchInput() {

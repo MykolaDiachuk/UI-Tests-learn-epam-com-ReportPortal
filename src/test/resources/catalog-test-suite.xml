@@ -3,7 +3,7 @@
 <suite name="TestSuite" parallel="methods" thread-count="6">
     <test name="UI Tests">
         <classes>
-            <class name="org.example.demo.CatalogTests">
+            <class name="org.example.demo.tests.CatalogTests">
             </class>
         </classes>
     </test>

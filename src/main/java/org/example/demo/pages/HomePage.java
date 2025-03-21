@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
 
     public CatalogMainPage goToCatalog() {
         logger.info("Navigating to catalog page");
-        waitForElementToBeClickable(catalogLink).click();
+        clickElementWithJS(catalogLink);
         return new CatalogMainPage();
     }
 
@@ -31,7 +31,7 @@ public class HomePage extends BasePage {
             WebElement acceptButton = waitForElementToBePresent(COOKIE_ACCEPT_BUTTON);
             if (acceptButton.isDisplayed()) {
                 logger.info("Accepting cookies");
-                acceptButton.click();
+                clickElementWithJS(acceptButton);
             }
         } catch (NoSuchElementException e) {
             logger.warn("Cookie accept button not found, skipping");

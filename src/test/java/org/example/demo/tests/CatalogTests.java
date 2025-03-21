@@ -1,5 +1,6 @@
-package org.example.demo;
+package org.example.demo.tests;
 
+import org.example.demo.listeners.TestListener;
 import org.example.demo.pages.CatalogMainPage;
 import org.example.demo.pages.CourseEntityPage;
 import org.example.demo.pages.HomePage;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,6 +22,7 @@ import static org.example.demo.enums.Skill.*;
 import static org.example.demo.enums.TargetLevel.NOT_DEFINED;
 import static org.example.demo.enums.TargetLevel.NOVICE;
 
+@Listeners(TestListener.class)
 public class CatalogTests {
     private final Logger logger = LoggerFactory.getLogger(CatalogTests.class);
 
@@ -40,7 +43,7 @@ public class CatalogTests {
     }
 
     @Test(description = "Verify that filters can be selected successfully on the catalog page.")
-    public void verifyThatFiltersCanBeSelectedSuccessfully() {
+    public void verifyThatFiltersCanBeSelectedSuccessfullyTest() {
         catalogMainPage.selectCheckbox(ENGLISH.getLabel());
         catalogMainPage.selectCheckbox(ONE_TO_FOUR_HOURS.getLabel());
         catalogMainPage.selectCheckbox(NOVICE.getLabel());
@@ -52,7 +55,7 @@ public class CatalogTests {
     }
 
     @Test(description = "Verify that skills can be selected and added for search.")
-    public void verifyThatSkillsCanBeSelectedAndSearch() {
+    public void verifyThatSkillsCanBeSelectedAndSearchTest() {
         catalogMainPage.openSkillSelection();
 
         catalogMainPage.getSkillSelection().addSkill(AT_JAVA.getLabel());
@@ -66,7 +69,7 @@ public class CatalogTests {
     }
 
     @Test(description = "Verify that right course page was found.")
-    public void verifyThatCoursePageWasFound() {
+    public void verifyThatCoursePageWasFoundTest() {
         catalogMainPage.selectCheckbox(ENGLISH.getLabel());
         catalogMainPage.selectCheckbox(UP_TO_1_HOUR.getLabel());
         catalogMainPage.selectCheckbox(NOT_DEFINED.getLabel());
@@ -79,7 +82,7 @@ public class CatalogTests {
     }
 
     @Test(description = "Verify that selecting valid languages in modal.")
-    public void verifyThatSelectingValidLanguages() {
+    public void verifyThatSelectingValidLanguagesTest() {
         catalogMainPage.openLanguageSelectionModal();
         catalogMainPage.selectLanguages(CZECH.getLabel(), SPANISH.getLabel(), FRENCH.getLabel());
 
@@ -89,7 +92,7 @@ public class CatalogTests {
     }
 
     @Test(description = "Verify that other languages was not selected.")
-    public void verifyThatOtherLanguagesWasNotSelected() {
+    public void verifyThatOtherLanguagesWasNotSelectedTest() {
         catalogMainPage.openLanguageSelectionModal();
         catalogMainPage.selectLanguages(ENGLISH.getLabel(), SPANISH.getLabel(), FRENCH.getLabel());
 

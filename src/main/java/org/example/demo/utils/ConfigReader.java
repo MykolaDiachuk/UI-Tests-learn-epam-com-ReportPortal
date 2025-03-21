@@ -14,6 +14,17 @@ public class ConfigReader {
     static {
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/config.properties")) {
             properties.load(fileInputStream);
+
+            String env = properties.getProperty("env", "qa");
+            //String env = System.getProperty("env", "qa");
+
+
+            String envConfigPath = String.format("src/main/resources/config.%s.properties", env);
+
+            try (FileInputStream envConfig = new FileInputStream(envConfigPath)) {
+                properties.load(envConfig);
+            }
+
         } catch (IOException e) {
             logger.error("Failed to open file: ", e);
         }

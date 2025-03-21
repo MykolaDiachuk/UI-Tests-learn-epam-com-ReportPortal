@@ -31,8 +31,20 @@ public abstract class BasePage {
         }
     }
 
-    private void clickElementWithJS(WebElement element) {
+    public void clickElementWithJS(WebElement element) {
+        highlightElement(element);
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].click();", element);
+    }
+
+    private void highlightElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("arguments[0].style.border='3px solid red'", element);
+
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
