@@ -6,8 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.example.demo.utils.Waiter.waitForElementToBeClickable;
-import static org.example.demo.utils.Waiter.waitForElementToBePresent;
+import static org.example.demo.utils.Waiter.*;
 
 public abstract class BasePage {
     protected BasePage() {
@@ -36,15 +35,15 @@ public abstract class BasePage {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].click();", element);
     }
+    public void clickElement(WebElement element) {
+        waitForElementToBeVisible(element);
+        highlightElement(element);
+        waitForElementToBeClickable(element).click();
+    }
 
     private void highlightElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].style.border='3px solid red'", element);
 
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
     }
 }

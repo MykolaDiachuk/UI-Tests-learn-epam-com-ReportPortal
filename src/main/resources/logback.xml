@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
-    <!-- Встановлюємо шлях до логів у змінну LOG_DIR -->
     <property name="LOG_DIR" value="${user.dir}/target/report/logs"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -10,22 +8,21 @@
         </encoder>
     </appender>
 
-    <!-- Файловий логер, який ПЕРЕЗАПИСУЄ test.log при кожному запуску -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_DIR}/test.log</file>
-        <append>false</append>  <!-- ❗ Важливо: Це змушує файл перезаписуватись -->
+        <append>false</append>
         <encoder>
             <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{0}] - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Архівування логів за датою -->
+
     <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/test.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIR}/test-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>1</maxHistory>  <!-- ❗ Зберігає тільки останній лог-файл -->
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>  <!-- Видаляє старі логи -->
+            <maxHistory>1</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
         <encoder>
             <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{0}] - %msg%n</pattern>

@@ -18,6 +18,7 @@ public class CatalogMainPage extends BasePage {
     private static final By LANGUAGE_MODAL = By.xpath("//button[contains(@class, 'uui-button-box') and .//div[text()='SHOW ALL 33 LANGUAGES']]");
     private static final By LIST_OF_LANGUAGES = By.xpath("//div[@role='option']//div[contains(@class, 'FMk1Jo uui-text')]");
     private static final By SKILL_SELECTION_INPUT = By.cssSelector("input.uui-input[placeholder='Search skill']");
+    private static final By LANGUAGE_FROM_ELEMENTS = By.cssSelector( "[data-testid='label-language'] .OverflowedTypography_content__wo27b");
     private final Logger logger = LoggerFactory.getLogger(CatalogMainPage.class);
     private final SkillSelectorModal skillSelector;
 
@@ -53,9 +54,24 @@ public class CatalogMainPage extends BasePage {
         scrollAndClick(LANGUAGE_MODAL);
     }
 
-    public void openSkillSelection() {
+    public SkillSelectorModal openSkillSelection() {
         logger.info("Open skill selection modal");
         scrollAndClick(SKILL_SELECTION_INPUT);
+        return skillSelector;
+    }
+
+    public List<String> getAllVisibleCourseLanguageCodes() {
+        logger.info("Collecting all language codes from visible course cards");
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        List<WebElement> languageElements = waitForAllElementsToBePresent(LANGUAGE_FROM_ELEMENTS);
+        return languageElements.stream()
+                .map(WebElement::getText)
+                .map(String::trim)
+                .toList();
     }
 
     public CourseEntityPage goToCourse(String courseName) {
@@ -91,6 +107,12 @@ public class CatalogMainPage extends BasePage {
         return Arrays.stream(languages)
                 .map(String::trim)
                 .anyMatch(lang -> lang.equalsIgnoreCase(text.trim()));
+    }
+
+    public boolean isAllCoursesHaveLanguage(String languageCode) {
+        logger.info("Verifying all course cards have language: {}", languageCode);
+        return getAllVisibleCourseLanguageCodes().stream()
+                .allMatch(code -> code.equalsIgnoreCase(languageCode));
     }
 
     private By getCheckboxLocator(String label) {

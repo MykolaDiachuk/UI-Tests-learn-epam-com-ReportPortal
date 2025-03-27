@@ -1,5 +1,6 @@
 package org.example.demo.listeners;
 
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.example.demo.utils.DriverManager;
 import org.openqa.selenium.OutputType;
@@ -24,24 +25,26 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         cleanOldScreenshots();
-        takeScreenshot(result.getName());
+        takeAndAttachScreenshot(result.getName());
+
     }
 
-    private void takeScreenshot(String testName) {
+    @Attachment(value = "Failure screenshot", type = "image/png")
+    public byte[] takeAndAttachScreenshot(String testName) {
         try {
-            File screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
-
+            File screenshotFile = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String screenshotFilePath = SCREENSHOT_PATH + testName + "_" + timestamp + ".png";
 
-            FileUtils.copyFile(screenshot, new File(screenshotFilePath));
+            FileUtils.copyFile(screenshotFile, new File(screenshotFilePath));
             logger.info("Screenshot saved: {}", screenshotFilePath);
 
+            return FileUtils.readFileToByteArray(screenshotFile);
         } catch (IOException | NullPointerException e) {
-            logger.error("Failed to take screenshot: {}", e.getMessage());
+            logger.error("Failed to take or attach screenshot: {}", e.getMessage());
+            return new byte[0];
         }
     }
-
 
     private void cleanOldScreenshots() {
         File screenshotDir = new File(SCREENSHOT_PATH);
@@ -58,5 +61,4 @@ public class TestListener implements ITestListener {
             }
         }
     }
-
 }
