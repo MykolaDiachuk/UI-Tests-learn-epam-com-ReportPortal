@@ -26,27 +26,24 @@ public class SkillSelectorModal extends BasePage {
         return this;
     }
 
-    private SkillSelectorModal searchSkill(String skillName) {
+    private void searchSkill(String skillName) {
         logger.info("Searching for skill '{}' in modal", skillName);
         WebElement searchInput = waitForElementToBeVisible(SKILL_SEARCHER);
         scrollToElement(searchInput);
         searchInput.sendKeys(skillName, Keys.ENTER);
-        return this;
     }
 
-    private SkillSelectorModal selectSkillFromResults(String skillName) {
+    private void selectSkillFromResults(String skillName) {
         logger.info("Selecting skill '{}' from results in modal", skillName);
         WebElement skillOption = waitForElementToBeClickable(getSkillLocator(skillName));
         clickElementWithJS(skillOption);
-        return this;
     }
 
-    private SkillSelectorModal clearSearchInput() {
+    private void clearSearchInput() {
         logger.info("Clear search input in modal");
         WebElement searchInput = waitForElementToBeVisible(SKILL_SEARCHER);
         searchInput.sendKeys(Keys.CONTROL + "a");
         searchInput.sendKeys(Keys.BACK_SPACE);
-        return this;
     }
 
     public void selectSkills() {

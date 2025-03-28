@@ -28,9 +28,6 @@ public class CatalogMainPage extends BasePage {
         this.skillSelector = new SkillSelectorModal();
     }
 
-    public SkillSelectorModal getSkillSelection() {
-        return skillSelector;
-    }
 
     public void selectCheckbox(String checkboxText) {
         logger.info("Select checkbox: {}", checkboxText);
