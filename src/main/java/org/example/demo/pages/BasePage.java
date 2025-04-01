@@ -23,11 +23,12 @@ public abstract class BasePage {
         clickElementWithJS(waitForElementToBeClickable(element));
     }
 
-    protected void scrollToElement(WebElement element) {
+    protected WebElement scrollToElement(WebElement element) {
         if (element.isDisplayed()) {
             JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
             js.executeScript("arguments[0].scrollIntoView({block: 'center'}); arguments[0].focus();", element);
         }
+        return element;
     }
 
     public void clickElementWithJS(WebElement element) {

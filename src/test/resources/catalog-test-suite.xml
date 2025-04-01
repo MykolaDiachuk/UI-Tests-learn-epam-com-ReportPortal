@@ -5,8 +5,10 @@
         <classes>
             <class name="org.example.demo.tests.CatalogCheckboxFilterTests"> </class>
             <class name="org.example.demo.tests.CatalogLanguageModalTests"> </class>
-            <class name="org.example.demo.tests.CatalogNavigationTests"> </class>
-            <class name="org.example.demo.tests.CatalogSkillFilterTests"> </class>
+            <class name="org.example.demo.tests.CatalogCoursePageTests"> </class>
+            <class name="org.example.demo.tests.CatalogSkillModalTests"> </class>
+            <class name="org.example.demo.tests.CatalogFilterBarTest"> </class>
+            <class name="org.example.demo.tests.CatalogCourseSortingTest"> </class>
         </classes>
     </test>
 </suite>

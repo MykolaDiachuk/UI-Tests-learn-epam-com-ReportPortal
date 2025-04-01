@@ -10,8 +10,8 @@
         <classes>
             <class name="org.example.demo.tests.CatalogCheckboxFilterTests"/>
             <class name="org.example.demo.tests.CatalogLanguageModalTests"/>
-            <class name="org.example.demo.tests.CatalogNavigationTests"/>
-            <class name="org.example.demo.tests.CatalogSkillFilterTests"/>
+            <class name="org.example.demo.tests.CatalogCoursePageTests"/>
+            <class name="org.example.demo.tests.CatalogSkillModalTests"/>
         </classes>
     </test>
 </suite>

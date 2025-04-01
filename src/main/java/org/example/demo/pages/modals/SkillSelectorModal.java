@@ -1,5 +1,6 @@
-package org.example.demo.pages;
+package org.example.demo.pages.modals;
 
+import org.example.demo.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

@@ -3,17 +3,16 @@ package org.example.demo.tests;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.example.demo.listeners.TestListener;
+import org.example.demo.basetest.BaseTest;
 import org.example.demo.pages.CourseEntityPage;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.example.demo.enums.EstimatedEffort.UP_TO_1_HOUR;
 import static org.example.demo.enums.Language.ENGLISH;
 import static org.example.demo.enums.TargetLevel.NOT_DEFINED;
 
-@Listeners({TestListener.class})
-public class CatalogNavigationTests extends BaseTest{
+public class CatalogCoursePageTests extends BaseTest {
     @Test(groups = "regression", description = "Verify that right course page was found.")
     @Story("Go to course page")
     @Severity(SeverityLevel.NORMAL)
@@ -22,7 +21,20 @@ public class CatalogNavigationTests extends BaseTest{
         catalogMainPage.selectCheckbox(UP_TO_1_HOUR.getLabel());
         catalogMainPage.selectCheckbox(NOT_DEFINED.getLabel());
 
+        catalogMainPage.getAllVisibleCourses()
+                .forEach(course -> {
+                    assertThat(course.getLanguage()).isEqualTo("ENG");
+                    long effortHours = course.getEffort().toHours();
+                    assertThat(effortHours).isBetween(0L, 1L);
+                });
+
         String courseName = "Amazon Aurora Service Primer";
+
+        catalogMainPage.getAllVisibleCourses()
+                .stream()
+                .filter(course -> course.getTitle().equals(courseName))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Course not found"));
 
         CourseEntityPage courseEntityPage = catalogMainPage.goToCourse(courseName);
 
