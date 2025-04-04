@@ -13,7 +13,7 @@ import static org.example.demo.utils.Waiter.*;
 
 public class LanguageSelectionModal extends BasePage {
     private final Logger logger = LoggerFactory.getLogger(LanguageSelectionModal.class);
-    private static final By LIST_OF_LANGUAGES = By.xpath("//div[@role='option']//div[contains(@class, 'FMk1Jo uui-text')]");
+    private static final By LIST_OF_LANGUAGES = By.xpath("//div[@role='option']//div[@role='cell']");
     private static final By SELECT_BUTTON = By.xpath("//button[.//div[text()='Select']]");
 
     public LanguageSelectionModal() {
