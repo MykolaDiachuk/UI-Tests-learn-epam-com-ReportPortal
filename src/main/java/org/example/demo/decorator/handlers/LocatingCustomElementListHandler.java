@@ -1,4 +1,4 @@
-package org.example.demo.decorator;
+package org.example.demo.decorator.handlers;
 
 import org.example.demo.decorator.elements.PageElement;
 import org.example.demo.decorator.elements.PageElementCollection;

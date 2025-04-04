@@ -8,7 +8,9 @@ import java.lang.reflect.Type;
 
 import org.example.demo.decorator.elements.PageElement;
 import org.example.demo.decorator.elements.PageElementCollection;
-import org.openqa.selenium.SearchContext;
+import org.example.demo.decorator.factory.WrapperFactory;
+import org.example.demo.decorator.handlers.LocatingCustomElementListHandler;
+import org.example.demo.decorator.locator.PageElementLocatorFactoryImpl;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;

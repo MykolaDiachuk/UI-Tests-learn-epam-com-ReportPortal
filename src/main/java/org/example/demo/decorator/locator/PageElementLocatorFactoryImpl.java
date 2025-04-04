@@ -1,4 +1,4 @@
-package org.example.demo.decorator;
+package org.example.demo.decorator.locator;
 
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
