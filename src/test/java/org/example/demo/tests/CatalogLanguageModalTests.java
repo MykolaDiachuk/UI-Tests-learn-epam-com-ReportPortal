@@ -12,7 +12,7 @@ import static org.example.demo.enums.Language.HEBREW;
 
 public class CatalogLanguageModalTests extends BaseTest {
 
-    @Test(groups = "smoke", description = "Verify that selecting valid languages in modal.")
+    @Test(groups = "regression", description = "Verify that selecting valid languages in modal.")
     @Story("Select languages")
     @Severity(SeverityLevel.NORMAL)
     public void verifyThatSelectingValidLanguagesTest() {
@@ -30,7 +30,7 @@ public class CatalogLanguageModalTests extends BaseTest {
                 });
     }
 
-    @Test(groups = "smoke", description = "Verify that other languages was not selected.")
+    @Test(groups = "regression", description = "Verify that other languages was not selected.")
     @Story("Select languages")
     @Severity(SeverityLevel.NORMAL)
     public void verifyThatOtherLanguagesWasNotSelectedTest() {
