@@ -9,6 +9,7 @@ public class PageElement implements WebElement {
 
     private final WebElement element;
     private final By locator;
+    private boolean single = false;
 
     public PageElement(WebElement element, By locator) {
         this.element = element;
@@ -107,5 +108,13 @@ public class PageElement implements WebElement {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public void setSingle(boolean single) {
+        this.single = single;
+    }
+
+    public boolean isSingle() {
+        return single;
     }
 }
