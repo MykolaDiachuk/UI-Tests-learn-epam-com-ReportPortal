@@ -1,8 +1,6 @@
 package org.example.demo.decorator;
 
 import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocator;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 

@@ -1,4 +1,4 @@
-package org.example.demo.decorator;
+package org.example.demo.decorator.elements;
 
 import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.*;
