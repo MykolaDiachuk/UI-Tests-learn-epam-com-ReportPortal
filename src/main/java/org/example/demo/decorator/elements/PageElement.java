@@ -1,10 +1,13 @@
 package org.example.demo.decorator.elements;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.*;
-
 import java.util.List;
 
+@Setter
+@Getter
 public class PageElement implements WebElement {
 
     private final WebElement element;
@@ -110,11 +113,4 @@ public class PageElement implements WebElement {
         }
     }
 
-    public void setSingle(boolean single) {
-        this.single = single;
-    }
-
-    public boolean isSingle() {
-        return single;
-    }
 }

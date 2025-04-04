@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 
 import org.example.demo.decorator.elements.PageElement;
 import org.example.demo.decorator.elements.PageElementCollection;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -18,7 +19,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 public class PageElementDecorator extends DefaultFieldDecorator {
 
     public PageElementDecorator(DriverProvider provider) {
-        super(new PageElementLocatorFactoryImpl(provider));
+        super(new PageElementLocatorFactoryImpl(provider.get()));
     }
 
     @Override

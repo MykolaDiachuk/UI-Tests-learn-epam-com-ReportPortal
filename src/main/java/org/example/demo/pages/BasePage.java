@@ -1,5 +1,6 @@
 package org.example.demo.pages;
 
+import org.example.demo.decorator.PageElementDecorator;
 import org.example.demo.utils.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,7 +11,7 @@ import static org.example.demo.utils.Waiter.*;
 
 public abstract class BasePage {
     protected BasePage() {
-        PageFactory.initElements(DriverManager.getDriver(), this);
+        PageFactory.initElements(new PageElementDecorator(DriverManager::getDriver), this);
     }
 
     protected void scrollAndClick(By locator) {

@@ -1,5 +1,6 @@
 package org.example.demo.pages;
 
+import org.example.demo.decorator.elements.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,7 @@ public class HomePage extends BasePage {
     private final Logger logger = LoggerFactory.getLogger(HomePage.class);
 
     @FindBy(css = "a.AppMenuItem_appMenuItem__-8c3R[href='/catalog']")
-    private WebElement catalogLink;
+    private PageElement catalogLink;
 
     public HomePage() {
         super();
@@ -22,7 +23,7 @@ public class HomePage extends BasePage {
 
     public CatalogMainPage goToCatalog() {
         logger.info("Navigating to catalog page");
-        clickElement(catalogLink);
+        clickElement(catalogLink.getElement());
         return new CatalogMainPage();
     }
 
