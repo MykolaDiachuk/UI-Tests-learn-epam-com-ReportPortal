@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.example.demo.enums.Language.*;
-import static org.example.demo.enums.Language.HEBREW;
 
 public class CatalogLanguageModalTests extends BaseTest {
 
@@ -17,7 +16,7 @@ public class CatalogLanguageModalTests extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void verifyThatSelectingValidLanguagesTest() {
         catalogMainPage.openLanguageSelectionModal()
-                .selectLanguages(CZECH.getLabel(), SPANISH.getLabel(), FRENCH.getLabel())
+                .selectLanguages(SPANISH.getLabel(), CZECH.getLabel(), FRENCH.getLabel())
                 .clickSelect();
 
         assertThat(catalogMainPage.isLanguageSelected(CZECH.getLabel())).isTrue();
@@ -35,7 +34,7 @@ public class CatalogLanguageModalTests extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void verifyThatOtherLanguagesWasNotSelectedTest() {
         catalogMainPage.openLanguageSelectionModal()
-                .selectLanguages(ENGLISH.getLabel(), SPANISH.getLabel(), FRENCH.getLabel())
+                .selectLanguages(CZECH.getLabel(), SPANISH.getLabel(), FRENCH.getLabel())
                 .clickSelect();
 
         assertThat(catalogMainPage.isLanguageSelected(ARMENIAN.getLabel())).isFalse();

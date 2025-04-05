@@ -1,20 +1,36 @@
 package org.example.demo.decorator.elements;
 
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import static org.example.demo.utils.Waiter.waitForAllElementsToBePresent;
 
-public class PageElementCollectionImpl<T extends WebElement>  implements PageElementCollection<T> {
+public class PageElementCollectionImpl<T extends WebElement> implements PageElementCollection<T> {
 
+    @Getter
     private final By locator;
     private final List<T> elements;
+    private final Class<T> type;
 
-    public PageElementCollectionImpl(By locator, List<T> elements) {
+    public PageElementCollectionImpl(By locator, List<T> elements, Class<T> type) {
         this.locator = locator;
         this.elements = elements;
+        this.type = type;
+    }
+
+    @Override
+    public PageElementCollection<T> waitUntilPresent() {
+        addList((List<T>) waitForAllElementsToBePresent(locator));
+        return this;
+    }
+
+    public void addList(List<T> list) {
+        elements.clear();
+        elements.addAll(list);
     }
 
     @Override
@@ -90,14 +106,6 @@ public class PageElementCollectionImpl<T extends WebElement>  implements PageEle
     @Override
     public void clear() {
         elements.clear();
-    }
-
-    public By getLocator() {
-        return locator;
-    }
-
-    public void addList(List<T> list) {
-        elements.addAll(list);
     }
 
 }

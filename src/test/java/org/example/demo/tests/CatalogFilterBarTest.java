@@ -24,7 +24,7 @@ public class CatalogFilterBarTest extends BaseTest {
                 .selectLanguages(ENGLISH.getLabel(), ARMENIAN.getLabel())
                 .clickSelect();
 
-        catalogMainPage.getFiltersText()
+        catalogMainPage.getFilterChipsBlock().getFiltersText()
                 .forEach(filter -> {
                     assertThat(filter).isIn(ESTIMATION_EFFORTS.getLabel(), TARGET_LEVEL.getLabel(), LANGUAGE.getLabel());
                 });
@@ -38,14 +38,14 @@ public class CatalogFilterBarTest extends BaseTest {
         catalogMainPage.selectCheckbox(ONE_TO_FOUR_HOURS.getLabel())
                 .selectCheckbox(NOVICE.getLabel())
                 .openLanguageSelectionModal()
-                .selectLanguages(ENGLISH.getLabel(), ARMENIAN.getLabel(),
+                .selectLanguages(ARMENIAN.getLabel(),
                         FRENCH.getLabel(), HEBREW.getLabel(), SPANISH.getLabel(),
                         CZECH.getLabel(), BELARUSIAN.getLabel())
                 .clickSelect();
 
-        assertThat(catalogMainPage.getFilterCount(LANGUAGE.getLabel())).isEqualTo(7);
-        assertThat(catalogMainPage.getFilterCount(TARGET_LEVEL.getLabel())).isEqualTo(1);
-        assertThat(catalogMainPage.getFilterCount(ESTIMATION_EFFORTS.getLabel())).isEqualTo(1);
+        assertThat(catalogMainPage.getFilterChipsBlock().getFilterCount(LANGUAGE.getLabel())).isEqualTo(6);
+        assertThat(catalogMainPage.getFilterChipsBlock().getFilterCount(TARGET_LEVEL.getLabel())).isEqualTo(1);
+        assertThat(catalogMainPage.getFilterChipsBlock().getFilterCount(ESTIMATION_EFFORTS.getLabel())).isEqualTo(1);
     }
 
     @Test(groups = "smoke", description = "Verify that filter bar have chips that was selected.")
@@ -55,17 +55,18 @@ public class CatalogFilterBarTest extends BaseTest {
         catalogMainPage.selectCheckbox(ONE_TO_FOUR_HOURS.getLabel())
                 .selectCheckbox(NOVICE.getLabel())
                 .openLanguageSelectionModal()
-                .selectLanguages(ENGLISH.getLabel())
+                .selectLanguages(FRENCH.getLabel())
                 .clickSelect();
 
         catalogMainPage.getAllVisibleCourses()
                 .forEach(course -> {
-                    assertThat(course.getLanguage()).isEqualTo("ENG");
+                    System.out.println(course.toString());
+                    assertThat(course.getLanguage()).isEqualTo("FRA");
                     long effortHours = course.getEffort().toHours();
                     assertThat(effortHours).isBetween(1L, 4L);
                 });
 
-        catalogMainPage.clearAllFilters();
+        catalogMainPage.getFilterChipsBlock().clearAllFilters();
 
         catalogMainPage.getAllVisibleCourses()
                 .forEach(course -> {

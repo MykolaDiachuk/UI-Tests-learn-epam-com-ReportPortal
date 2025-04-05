@@ -16,7 +16,7 @@
         <aspectj.version>1.9.22.1</aspectj.version>
         <fluentlenium.version>5.0.4</fluentlenium.version>
         <allure.version>2.29.0</allure.version>
-        <threadCount>1</threadCount>
+        <threadCount>4</threadCount>
         <suiteXmlFile>src/test/resources/catalog-test-suite.xml</suiteXmlFile>
         <suiteDir>src/test/resources/</suiteDir>
         <suiteName>catalog-test-suite.xml</suiteName>

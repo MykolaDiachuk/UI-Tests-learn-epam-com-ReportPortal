@@ -2,11 +2,11 @@
 
 ### Available Settings
 
-| Property         | Description                                      | Example Values                     | Default Value  |
-|------------------|--------------------------------------------------|------------------------------------|---------------------------------------------------------------|
-| `suiteName`      | Name of the TestNG suite XML file to run         | `smoke-suite.xml`, `regression-suite.xml`, `catalog-test-suite.xml` | `catalog-test-suite.xml`|
-| `threadCount`    | Number of threads to run tests in parallel       | `1`, `2`, `6`, `10`                |`1`|
-| `env`            | Type of environment                              | `qa`, `dev`                        |`qa`|
+| Property      | Description                                | Example Values                                                      | Default Value            |
+|---------------|--------------------------------------------|---------------------------------------------------------------------|--------------------------|
+| `suiteName`   | Name of the TestNG suite XML file to run   | `smoke-suite.xml`, `regression-suite.xml`, `catalog-test-suite.xml` | `catalog-test-suite.xml` |
+| `threadCount` | Number of threads to run tests in parallel | `1`, `2`, `6`, `10`                                                 | `4`                      |
+| `env`         | Type of environment                        | `qa`, `dev`                                                         | `qa`                     |
 
 
 ---

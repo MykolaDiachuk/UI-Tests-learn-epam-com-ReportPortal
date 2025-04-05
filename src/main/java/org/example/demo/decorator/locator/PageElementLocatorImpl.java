@@ -18,7 +18,7 @@ public class PageElementLocatorImpl implements ElementLocator {
     private List<WebElement> cachedElementList;
 
     public PageElementLocatorImpl(SearchContext searchContext, Field field) {
-        this(searchContext, (AbstractAnnotations)(new Annotations(field)));
+        this(searchContext, new Annotations(field));
     }
 
     public PageElementLocatorImpl(SearchContext searchContext, AbstractAnnotations annotations) {
@@ -59,6 +59,6 @@ public class PageElementLocatorImpl implements ElementLocator {
 
     public String toString() {
         String var10000 = this.getClass().getSimpleName();
-        return var10000 + " '" + String.valueOf(this.by) + "'";
+        return var10000 + " '" + this.by + "'";
     }
 }

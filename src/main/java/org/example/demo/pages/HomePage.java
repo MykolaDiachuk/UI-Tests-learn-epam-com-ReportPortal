@@ -3,7 +3,6 @@ package org.example.demo.pages;
 import org.example.demo.decorator.elements.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,13 +22,13 @@ public class HomePage extends BasePage {
 
     public CatalogMainPage goToCatalog() {
         logger.info("Navigating to catalog page");
-        clickElement(catalogLink.getElement());
+        clickElement(catalogLink);
         return new CatalogMainPage();
     }
 
     public void acceptCookies() {
         try {
-            WebElement acceptButton = waitForElementToBePresent(COOKIE_ACCEPT_BUTTON);
+            PageElement acceptButton = waitForElementToBePresent(COOKIE_ACCEPT_BUTTON);
             clickElement(acceptButton);
         } catch (NoSuchElementException e) {
             logger.warn("Cookie accept button not found, skipping");

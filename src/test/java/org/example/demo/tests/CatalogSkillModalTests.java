@@ -1,11 +1,16 @@
 package org.example.demo.tests;
 
-import io.qameta.allure.*;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.example.demo.basetest.BaseTest;
+import org.example.demo.dtos.CourseDTO;
 import org.testng.annotations.Test;
+
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.example.demo.enums.Skill.*;
-import static org.example.demo.enums.Skill.AI_IN_TEST_AUTOMATION;
 
 public class CatalogSkillModalTests extends BaseTest {
 
@@ -23,10 +28,14 @@ public class CatalogSkillModalTests extends BaseTest {
         assertThat(catalogMainPage.isSkillSelected(JAVA_CORE.getLabel())).isTrue();
         assertThat(catalogMainPage.isSkillSelected(AI_IN_TEST_AUTOMATION.getLabel())).isTrue();
 
-        catalogMainPage.getAllVisibleCourses()
-                .forEach(course -> {
-                    assertThat(course.getSkills()).contains(AT_JAVA.getLabel(), JAVA_CORE.getLabel(), AI_IN_TEST_AUTOMATION.getLabel());
-                });
+        List<CourseDTO> courses = catalogMainPage.getAllVisibleCourses();
+        assertThat(courses)
+                .as("Courses should be present on the page")
+                .isNotEmpty();
+
+        courses.forEach(course -> {
+            assertThat(course.getSkills()).contains(AT_JAVA.getLabel(), JAVA_CORE.getLabel(), AI_IN_TEST_AUTOMATION.getLabel());
+        });
     }
 
     @Test(groups = "regression", description = "Verify that skills not be selected.")
@@ -39,11 +48,18 @@ public class CatalogSkillModalTests extends BaseTest {
                 .addSkill(AT_PYTHON.getLabel())
                 .selectSkills();
 
-        catalogMainPage.getAllVisibleCourses()
-                .forEach(course -> {
-                    assertThat(course.getSkills())
-                            .doesNotContain(AT_JAVA.getLabel(), AWS_APP_RUNNER.getLabel(), AI_IN_TEST_AUTOMATION.getLabel());
-                });
+        List<CourseDTO> courses = catalogMainPage.getAllVisibleCourses();
+        assertThat(courses)
+                .as("Courses should be present on the page")
+                .isNotEmpty();
+
+        courses.forEach(course -> {
+            assertThat(course.getSkills())
+                    .doesNotContain(AT_JAVA.getLabel(), AWS_APP_RUNNER.getLabel(), AI_IN_TEST_AUTOMATION.getLabel());
+            assertThat(course.getSkills())
+                    .contains(CUCUMBER.getLabel(), JAVA_CORE.getLabel(), AT_PYTHON.getLabel());
+
+        });
     }
 }
 

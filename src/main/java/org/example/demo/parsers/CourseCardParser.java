@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class CourseCardParser {
     private static final By SKILLS_LOCATOR = By.xpath(".//*[@data-testid='test-learning-item-skills']//div[contains(@class, 'Typography_ellipses__')]");
 
     public static CourseDTO parse(WebElement card) {
+
         String title = "";
         String language = "";
         Duration effort = Duration.ZERO;

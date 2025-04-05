@@ -1,5 +1,6 @@
 package org.example.demo.pages.modals;
 
+import org.example.demo.decorator.elements.PageElement;
 import org.example.demo.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -29,14 +30,14 @@ public class SkillSelectorModal extends BasePage {
 
     private void searchSkill(String skillName) {
         logger.info("Searching for skill '{}' in modal", skillName);
-        WebElement searchInput = waitForElementToBeVisible(SKILL_SEARCHER);
+        PageElement searchInput = waitForElementToBeVisible(SKILL_SEARCHER);
         scrollToElement(searchInput);
         searchInput.sendKeys(skillName, Keys.ENTER);
     }
 
     private void selectSkillFromResults(String skillName) {
         logger.info("Selecting skill '{}' from results in modal", skillName);
-        WebElement skillOption = waitForElementToBeClickable(getSkillLocator(skillName));
+        PageElement skillOption = waitForElementToBeClickable(getSkillLocator(skillName));
         clickElementWithJS(skillOption);
     }
 

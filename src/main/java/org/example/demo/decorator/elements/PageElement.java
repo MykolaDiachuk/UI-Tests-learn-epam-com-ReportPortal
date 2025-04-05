@@ -2,9 +2,13 @@ package org.example.demo.decorator.elements;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.demo.utils.DriverManager;
 import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.*;
+
 import java.util.List;
+
+import static org.example.demo.utils.Waiter.waitForElementToBeClickable;
 
 @Setter
 @Getter
@@ -21,7 +25,9 @@ public class PageElement implements WebElement {
 
     @Override
     public void click() {
-        element.click();
+        WebElement fresh = waitForElementToBeClickable(locator).getElement();
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("arguments[0].click();", fresh);
     }
 
     @Override

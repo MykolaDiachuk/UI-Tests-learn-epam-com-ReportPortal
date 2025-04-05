@@ -1,15 +1,16 @@
 package org.example.demo.pages.modals;
 
+import org.example.demo.decorator.elements.PageElement;
 import org.example.demo.pages.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.example.demo.utils.Waiter.*;
+import static org.example.demo.utils.Waiter.waitForAllElementsToBePresent;
+import static org.example.demo.utils.Waiter.waitForElementToBeClickable;
 
 public class LanguageSelectionModal extends BasePage {
     private final Logger logger = LoggerFactory.getLogger(LanguageSelectionModal.class);
@@ -28,7 +29,7 @@ public class LanguageSelectionModal extends BasePage {
         return this;
     }
 
-    private List<WebElement> getListOfLanguages() {
+    private List<PageElement> getListOfLanguages() {
         logger.info("Get list of languages");
         return waitForAllElementsToBePresent(LIST_OF_LANGUAGES);
     }
