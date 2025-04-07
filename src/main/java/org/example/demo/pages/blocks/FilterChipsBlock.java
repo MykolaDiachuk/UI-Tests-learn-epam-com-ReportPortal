@@ -32,9 +32,11 @@ public class FilterChipsBlock {
         logger.info("Get filter count for: {}", filterName);
 
         //TODO: Refactor this to use PageElementCollection
-        List<PageElement> chips = waitForAllElementsToBePresent(By.cssSelector(".ExploreFilterChips_chip__OAl2H"));
 
-        PageElement targetChip = chips.stream()
+        List<PageElement> chipsNew = waitForAllElementsToBePresent(By.cssSelector(".ExploreFilterChips_chip__OAl2H"));
+        PageElement targetChip = chipsNew.stream()
+
+        //PageElement targetChip = chips.getElements().stream()
                 .filter(chip -> chip.findElement(FILTER_CHIP_TEXT)
                         .getText().equals(filterName))
                 .findFirst()
