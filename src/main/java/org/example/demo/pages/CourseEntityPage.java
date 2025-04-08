@@ -5,8 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.example.demo.utils.Waiter.waitForElementToBeVisible;
-
 public class CourseEntityPage extends BasePage {
     private final Logger logger = LoggerFactory.getLogger(CourseEntityPage.class);
 
@@ -18,8 +16,8 @@ public class CourseEntityPage extends BasePage {
     }
 
     public String getTitle() {
-        String courseTitle = waitForElementToBeVisible(title).getText();
-        logger.info("Get course title: {}", courseTitle);
-        return courseTitle;
+        String titleText = title.getText();
+        logger.info("Get course title: {}", titleText);
+        return titleText;
     }
 }

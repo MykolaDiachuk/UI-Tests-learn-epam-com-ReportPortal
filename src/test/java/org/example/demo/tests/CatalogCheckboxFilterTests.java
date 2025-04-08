@@ -1,7 +1,9 @@
 package org.example.demo.tests;
 
-import io.qameta.allure.*;
-import org.example.demo.basetest.BaseTest;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import org.example.demo.tests.basetest.BaseTest;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

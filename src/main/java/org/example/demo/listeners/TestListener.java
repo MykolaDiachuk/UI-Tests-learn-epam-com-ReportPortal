@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -29,7 +28,6 @@ public class TestListener implements TestLifecycleListener {
     @Override
     public void beforeTestStop(TestResult result) {
         if (result.getStatus() == Status.FAILED || result.getStatus() == Status.BROKEN) {
-            cleanOldScreenshots();
             saveScreenshotToFile(result.getName());
             attachScreenshot();
             attachLogs();
@@ -65,22 +63,6 @@ public class TestListener implements TestLifecycleListener {
             logger.info("Logs attached to Allure report");
         } catch (IOException e) {
             logger.error("Failed to attach logs: {}", e.getMessage());
-        }
-    }
-
-    private void cleanOldScreenshots() {
-        File screenshotDir = new File(SCREENSHOT_PATH);
-        if (!screenshotDir.exists()) return;
-
-        File[] files = screenshotDir.listFiles();
-        if (files == null) return;
-
-        String todayDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-
-        for (File file : files) {
-            if (file.isFile() && file.getName().contains(todayDate)) {
-                file.delete();
-            }
         }
     }
 }

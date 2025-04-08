@@ -1,36 +1,54 @@
 package org.example.demo.decorator.elements;
 
-import lombok.Getter;
+import org.example.demo.decorator.factory.WrapperFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import static org.example.demo.utils.Waiter.waitForAllElementsToBePresent;
 
-public class PageElementCollectionImpl<T extends WebElement> implements PageElementCollection<T> {
+import static org.example.demo.utils.Waiter.*;
 
-    @Getter
+public class PageElementCollectionImpl<T> implements PageElementCollection<T> {
+
     private final By locator;
-    private final List<T> elements;
-    private final Class<T> type;
+    private List<T> elements;
+    private Class<T> clazz;
 
-    public PageElementCollectionImpl(By locator, List<T> elements, Class<T> type) {
+    public PageElementCollectionImpl(By locator, Class<T> clazz) {
         this.locator = locator;
-        this.elements = elements;
-        this.type = type;
+        this.clazz = clazz;
+        this.elements = new ArrayList<>();
     }
 
     @Override
     public PageElementCollection<T> waitUntilPresent() {
-        addList((List<T>) waitForAllElementsToBePresent(locator));
+        addList(waitForAllElementsToBePresent(locator));
         return this;
     }
 
-    public void addList(List<T> list) {
+    @Override
+    public PageElementCollection<T> waitUntilVisible() {
+        addList(waitForAllElementsToBeVisible(locator));
+        return this;
+    }
+    @Override
+    public PageElementCollection<T> waitUntilAnyPresent() {
+        getFluentWait().until(driver -> {
+            List<WebElement> elements = driver.findElements(locator);
+            return !elements.isEmpty();
+        });
+        return waitUntilPresent();
+    }
+
+    public void addList(List<WebElement> list) {
         elements.clear();
-        elements.addAll(list);
+        for (int i = 0; i < list.size(); i++) {
+            By singleElementLocator = By.xpath('(' + locator.toString().substring(10) + ')' + '[' + (i + 1) + ']');
+            elements.add(WrapperFactory.createInstance(clazz, list.get(i), singleElementLocator));
+        }
     }
 
     @Override
@@ -107,5 +125,4 @@ public class PageElementCollectionImpl<T extends WebElement> implements PageElem
     public void clear() {
         elements.clear();
     }
-
 }

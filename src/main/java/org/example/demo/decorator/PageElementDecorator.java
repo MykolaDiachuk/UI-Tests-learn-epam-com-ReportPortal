@@ -1,11 +1,5 @@
 package org.example.demo.decorator;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Proxy;
-import java.lang.reflect.Type;
-
 import org.example.demo.decorator.elements.PageElement;
 import org.example.demo.decorator.elements.PageElementCollection;
 import org.example.demo.decorator.factory.WrapperFactory;
@@ -17,11 +11,13 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.pagefactory.DefaultFieldDecorator;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
+import java.lang.reflect.*;
+
 
 public class PageElementDecorator extends DefaultFieldDecorator {
 
     public PageElementDecorator(DriverProvider provider) {
-        super(new PageElementLocatorFactoryImpl(provider.get()));
+        super(new PageElementLocatorFactoryImpl(provider));
     }
 
     @Override
@@ -63,7 +59,6 @@ public class PageElementDecorator extends DefaultFieldDecorator {
     protected PageElement createElement(ClassLoader loader, ElementLocator locator, Class<PageElement> clazz, Field field) {
         WebElement proxy = proxyForLocator(loader, locator);
         PageElement element = WrapperFactory.createInstance(clazz, proxy, field);
-        element.setSingle(true);
         return element;
     }
 

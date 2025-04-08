@@ -10,20 +10,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_DIR}/test.log</file>
-        <append>false</append>
-        <encoder>
-            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{0}] - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-
-    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_DIR}/test.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/test-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>1</maxHistory>
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
+        <append>false</append> <!-- ВАЖЛИВО: перезапис -->
         <encoder>
             <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{0}] - %msg%n</pattern>
         </encoder>
@@ -32,7 +19,6 @@
     <root level="info">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
-        <appender-ref ref="ROLLING_FILE"/>
     </root>
 
 </configuration>

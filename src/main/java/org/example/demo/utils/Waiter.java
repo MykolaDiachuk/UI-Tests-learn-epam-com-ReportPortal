@@ -1,7 +1,6 @@
 package org.example.demo.utils;
 
 import org.example.demo.decorator.elements.PageElement;
-import org.example.demo.decorator.elements.PageElementCollectionImpl;
 import org.example.demo.decorator.factory.WrapperFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Waiter {
 
@@ -36,6 +34,10 @@ public class Waiter {
         return element;
     }
 
+    public static List<WebElement> waitForAllElementsToBeVisible(By locator) {
+        return getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    }
+
     public static PageElement waitForElementToBeClickable(By locator) {
         WebElement element = getWait().until(ExpectedConditions.elementToBeClickable(locator));
         return WrapperFactory.createInstance(PageElement.class, element, locator);
@@ -51,25 +53,20 @@ public class Waiter {
         return WrapperFactory.createInstance(PageElement.class, element, locator);
     }
 
-    public static List<PageElement> waitForAllElementsToBePresent(By locator) {
-        List<WebElement> elements = getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
-        return elements.stream()
-                .map(el -> WrapperFactory.createInstance(PageElement.class, el, locator))
-                .collect(Collectors.toList());
+    public static List<WebElement> waitForAllElementsToBePresent(By locator) {
+        return getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
 
     public static void waitForAllElementsToBeInvisible(By locator) {
         getWait().until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+    public static void waitForAllElementsToBeInvisible(PageElement element) {
+        getWait().until(ExpectedConditions.invisibilityOf(element.getElement()));
     }
 
     public static FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<>(DriverManager.getDriver())
                 .withTimeout(TIMEOUT)
                 .pollingEvery(POLLING_INTERVAL);
-    }
-
-    public static PageElementCollectionImpl<PageElement> waitAsCollection(By locator) {
-        List<PageElement> elements = waitForAllElementsToBePresent(locator);
-        return new PageElementCollectionImpl<>(locator, elements, PageElement.class);
     }
 }
