@@ -1,5 +1,6 @@
-package org.example.demo.utils;
+package org.example.demo.utils.driver;
 
+import org.example.demo.utils.config.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

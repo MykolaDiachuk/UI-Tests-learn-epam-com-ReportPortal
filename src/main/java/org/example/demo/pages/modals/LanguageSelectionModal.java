@@ -1,7 +1,7 @@
 package org.example.demo.pages.modals;
 
-import org.example.demo.decorator.elements.PageElement;
-import org.example.demo.decorator.elements.PageElementCollection;
+import org.example.demo.elementcore.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElementCollection;
 import org.example.demo.pages.BasePage;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;

@@ -1,8 +1,8 @@
-package org.example.demo.decorator.handlers;
+package org.example.demo.elementcore.handlers;
 
-import org.example.demo.decorator.elements.PageElement;
-import org.example.demo.decorator.elements.PageElementCollection;
-import org.example.demo.decorator.elements.PageElementCollectionImpl;
+import org.example.demo.elementcore.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElementCollection;
+import org.example.demo.elementcore.elements.PageElementCollectionImpl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.pagefactory.Annotations;
 import org.openqa.selenium.support.pagefactory.ElementLocator;

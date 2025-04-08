@@ -1,9 +1,9 @@
-package org.example.demo.utils;
+package org.example.demo.utils.selenium;
 
-import org.example.demo.decorator.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElement;
 import org.openqa.selenium.By;
 
-import static org.example.demo.utils.Waiter.waitForElementToBePresent;
+import static org.example.demo.utils.selenium.Waiter.waitForElementToBePresent;
 
 public class FormatElement {
     private final String xpathTemplate;

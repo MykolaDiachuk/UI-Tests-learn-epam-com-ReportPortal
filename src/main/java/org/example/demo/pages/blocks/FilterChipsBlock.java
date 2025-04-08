@@ -1,9 +1,9 @@
 package org.example.demo.pages.blocks;
 
-import org.example.demo.decorator.PageElementDecorator;
-import org.example.demo.decorator.elements.PageElement;
-import org.example.demo.decorator.elements.PageElementCollection;
-import org.example.demo.utils.DriverManager;
+import org.example.demo.elementcore.PageElementDecorator;
+import org.example.demo.elementcore.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElementCollection;
+import org.example.demo.utils.driver.DriverManager;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;

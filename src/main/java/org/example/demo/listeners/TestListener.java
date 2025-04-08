@@ -5,7 +5,7 @@ import io.qameta.allure.listener.TestLifecycleListener;
 import io.qameta.allure.model.Status;
 import io.qameta.allure.model.TestResult;
 import org.apache.commons.io.FileUtils;
-import org.example.demo.utils.DriverManager;
+import org.example.demo.utils.driver.DriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
-package org.example.demo.decorator.elements;
+package org.example.demo.elementcore.elements;
 
-import org.example.demo.decorator.factory.WrapperFactory;
+import org.example.demo.elementcore.factory.WrapperFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.example.demo.utils.Waiter.*;
+import static org.example.demo.utils.selenium.Waiter.*;
 
 public class PageElementCollectionImpl<T> implements PageElementCollection<T> {
 

@@ -2,9 +2,9 @@ package org.example.demo.tests.basetest;
 
 import org.example.demo.pages.CatalogMainPage;
 import org.example.demo.pages.HomePage;
-import org.example.demo.utils.ConfigReader;
-import org.example.demo.utils.DriverManager;
-import org.example.demo.utils.ReportCleaner;
+import org.example.demo.utils.config.ConfigReader;
+import org.example.demo.utils.driver.DriverManager;
+import org.example.demo.utils.reporting.ReportCleaner;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package org.example.demo.decorator.factory;
+package org.example.demo.elementcore.factory;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

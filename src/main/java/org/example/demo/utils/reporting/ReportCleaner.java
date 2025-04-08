@@ -1,4 +1,4 @@
-package org.example.demo.utils;
+package org.example.demo.utils.reporting;
 
 import org.apache.commons.io.FileUtils;
 

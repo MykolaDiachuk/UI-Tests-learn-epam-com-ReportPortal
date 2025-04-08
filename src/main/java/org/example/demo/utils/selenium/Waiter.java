@@ -1,7 +1,8 @@
-package org.example.demo.utils;
+package org.example.demo.utils.selenium;
 
-import org.example.demo.decorator.elements.PageElement;
-import org.example.demo.decorator.factory.WrapperFactory;
+import org.example.demo.elementcore.elements.PageElement;
+import org.example.demo.elementcore.factory.WrapperFactory;
+import org.example.demo.utils.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

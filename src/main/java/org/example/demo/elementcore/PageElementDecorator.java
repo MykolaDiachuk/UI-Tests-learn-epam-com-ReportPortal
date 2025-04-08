@@ -1,10 +1,10 @@
-package org.example.demo.decorator;
+package org.example.demo.elementcore;
 
-import org.example.demo.decorator.elements.PageElement;
-import org.example.demo.decorator.elements.PageElementCollection;
-import org.example.demo.decorator.factory.WrapperFactory;
-import org.example.demo.decorator.handlers.LocatingCustomElementListHandler;
-import org.example.demo.decorator.locator.PageElementLocatorFactoryImpl;
+import org.example.demo.elementcore.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElementCollection;
+import org.example.demo.elementcore.factory.WrapperFactory;
+import org.example.demo.elementcore.handlers.LocatingCustomElementListHandler;
+import org.example.demo.elementcore.locator.PageElementLocatorFactoryImpl;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;

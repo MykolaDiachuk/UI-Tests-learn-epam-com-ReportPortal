@@ -1,4 +1,4 @@
-package org.example.demo.parsers;
+package org.example.demo.dtos.parsers;
 
 import org.example.demo.dtos.CourseDTO;
 import org.openqa.selenium.By;

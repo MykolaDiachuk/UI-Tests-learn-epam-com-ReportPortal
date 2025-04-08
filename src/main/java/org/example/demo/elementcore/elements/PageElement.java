@@ -1,14 +1,14 @@
-package org.example.demo.decorator.elements;
+package org.example.demo.elementcore.elements;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.demo.utils.DriverManager;
+import org.example.demo.utils.driver.DriverManager;
 import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.*;
 
 import java.util.List;
 
-import static org.example.demo.utils.Waiter.*;
+import static org.example.demo.utils.selenium.Waiter.*;
 
 @Setter
 @Getter

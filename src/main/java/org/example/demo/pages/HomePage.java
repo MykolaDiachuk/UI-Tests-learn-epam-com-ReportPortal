@@ -1,6 +1,6 @@
 package org.example.demo.pages;
 
-import org.example.demo.decorator.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElement;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;

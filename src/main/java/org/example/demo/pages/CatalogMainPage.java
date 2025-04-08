@@ -1,14 +1,14 @@
 package org.example.demo.pages;
 
 import lombok.Getter;
-import org.example.demo.decorator.elements.PageElement;
-import org.example.demo.decorator.elements.PageElementCollection;
+import org.example.demo.elementcore.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElementCollection;
 import org.example.demo.dtos.CourseDTO;
 import org.example.demo.pages.blocks.FilterChipsBlock;
 import org.example.demo.pages.modals.LanguageSelectionModal;
 import org.example.demo.pages.modals.SkillSelectorModal;
-import org.example.demo.parsers.CourseCardParser;
-import org.example.demo.utils.FormatElement;
+import org.example.demo.dtos.parsers.CourseCardParser;
+import org.example.demo.utils.selenium.FormatElement;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -29,14 +29,14 @@ public class CatalogMainPage extends BasePage {
     private final FormatElement courseTitle = new FormatElement("//div[contains(@class, 'OverflowedTypography_content__') and text()='%s']");
     private final FormatElement sortDropdownItem = new FormatElement("//div[contains(@class,'DropdownBaseItem_md__IT1ES')]/div/div[text()='%s']");
 
+    @FindBy(xpath = "//div[contains(@class, 'CatalogCard_catalogCard__+qmum')]")
+    private PageElementCollection<PageElement> courseCards;
+
     @FindBy(xpath = "//button[contains(@class, 'uui-button-box') and .//div[text()='SHOW ALL 33 LANGUAGES']]")
     private PageElement languageModal;
 
     @FindBy(css = "input.uui-input[placeholder='Search skill']")
     private PageElement skillSelectionInput;
-
-    @FindBy(xpath = "//div[contains(@class, 'CatalogCard_catalogCard__+qmum')]")
-    private PageElementCollection<PageElement> courseCards;
 
     @FindBy(css = "button[class*='DropdownSortingTarget_linkButton__yEhkX']")
     private PageElement sortByButton;

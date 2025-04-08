@@ -1,6 +1,6 @@
-package org.example.demo.decorator.locator;
+package org.example.demo.elementcore.locator;
 
-import org.example.demo.decorator.DriverProvider;
+import org.example.demo.elementcore.DriverProvider;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 

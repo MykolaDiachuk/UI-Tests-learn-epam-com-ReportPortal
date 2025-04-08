@@ -1,14 +1,14 @@
 package org.example.demo.pages.modals;
 
-import org.example.demo.decorator.elements.PageElement;
+import org.example.demo.elementcore.elements.PageElement;
 import org.example.demo.pages.BasePage;
-import org.example.demo.utils.FormatElement;
+import org.example.demo.utils.selenium.FormatElement;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.example.demo.utils.Waiter.waitForAllElementsToBeInvisible;
+import static org.example.demo.utils.selenium.Waiter.waitForAllElementsToBeInvisible;
 
 public class SkillSelectorModal extends BasePage {
     private final Logger logger = LoggerFactory.getLogger(SkillSelectorModal.class);

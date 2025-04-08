@@ -1,4 +1,4 @@
-package org.example.demo.decorator;
+package org.example.demo.elementcore;
 
 import org.openqa.selenium.SearchContext;
 
