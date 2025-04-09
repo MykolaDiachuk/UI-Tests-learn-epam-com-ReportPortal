@@ -9,7 +9,7 @@ public class CourseEntityPage extends BasePage {
     private final Logger logger = LoggerFactory.getLogger(CourseEntityPage.class);
 
     @FindBy(xpath = "//h1[contains(@class, 'Typography_typography__ViAqw Typography_h1__l4vDP primary')]")
-    protected PageElement title;
+    private PageElement title;
 
     public CourseEntityPage() {
         super();
