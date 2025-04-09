@@ -33,9 +33,13 @@ public class CatalogSkillModalTests extends BaseTest {
                 .as("Courses should be present on the page")
                 .isNotEmpty();
 
-        courses.forEach(course -> {
-            assertThat(course.getSkills()).contains(AT_JAVA.getLabel(), JAVA_CORE.getLabel(), AI_IN_TEST_AUTOMATION.getLabel());
-        });
+        assertThat(courses)
+                .allSatisfy(course ->
+                        assertThat(course.getSkills()).contains(
+                                AT_JAVA.getLabel(),
+                                JAVA_CORE.getLabel(),
+                                AI_IN_TEST_AUTOMATION.getLabel())
+                );
     }
 
     @Test(groups = "regression", description = "Verify that skills not be selected.")
@@ -53,11 +57,17 @@ public class CatalogSkillModalTests extends BaseTest {
                 .as("Courses should be present on the page")
                 .isNotEmpty();
 
-        courses.forEach(course -> {
+        assertThat(courses).allSatisfy(course -> {
             assertThat(course.getSkills())
-                    .doesNotContain(AT_JAVA.getLabel(), AWS_APP_RUNNER.getLabel(), AI_IN_TEST_AUTOMATION.getLabel());
+                    .doesNotContain(
+                            AT_JAVA.getLabel(),
+                            AWS_APP_RUNNER.getLabel(),
+                            AI_IN_TEST_AUTOMATION.getLabel());
             assertThat(course.getSkills())
-                    .contains(CUCUMBER.getLabel(), JAVA_CORE.getLabel(), AT_PYTHON.getLabel());
+                    .contains(
+                            CUCUMBER.getLabel(),
+                            JAVA_CORE.getLabel(),
+                            AT_PYTHON.getLabel());
 
         });
     }

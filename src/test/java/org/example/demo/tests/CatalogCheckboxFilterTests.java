@@ -25,11 +25,10 @@ public class CatalogCheckboxFilterTests extends BaseTest {
         assertThat(catalogMainPage.isCheckboxSelected(ONE_TO_FOUR_HOURS.getLabel())).isTrue();
         assertThat(catalogMainPage.isCheckboxSelected(NOVICE.getLabel())).isTrue();
 
-        catalogMainPage.getAllVisibleCourses()
-                .forEach(course -> {
+        assertThat(catalogMainPage.getAllVisibleCourses())
+                .allSatisfy(course -> {
                     assertThat(course.getLanguage()).isEqualTo("ENG");
-                    long effortHours = course.getEffort().toHours();
-                    assertThat(effortHours).isBetween(1L, 4L);
+                    assertThat(course.getEffort().toHours()).isBetween(1L, 4L);
                 });
     }
 
@@ -39,9 +38,9 @@ public class CatalogCheckboxFilterTests extends BaseTest {
     public void verifyThatCoursesFilteredByLanguageTest() {
         catalogMainPage.selectCheckbox(ENGLISH.getLabel());
 
-        catalogMainPage.getAllVisibleCourses()
-                .forEach(course -> {
-                    assertThat(course.getLanguage()).isEqualTo("ENG");
-                });
+        assertThat(catalogMainPage.getAllVisibleCourses())
+                .allSatisfy(course ->
+                        assertThat(course.getLanguage()).isEqualTo("ENG"));
+
     }
 }

@@ -23,8 +23,8 @@ public class CatalogLanguageModalTests extends BaseTest {
         assertThat(catalogMainPage.isLanguageSelected(SPANISH.getLabel())).isTrue();
         assertThat(catalogMainPage.isLanguageSelected(FRENCH.getLabel())).isTrue();
 
-        catalogMainPage.getAllVisibleCourses()
-                .forEach(course -> {
+        assertThat(catalogMainPage.getAllVisibleCourses())
+                .allSatisfy(course -> {
                     assertThat(course.getLanguage()).isIn("CZE", "SPA", "FRA");
                 });
     }
@@ -41,8 +41,8 @@ public class CatalogLanguageModalTests extends BaseTest {
         assertThat(catalogMainPage.isLanguageSelected(BELARUSIAN.getLabel())).isFalse();
         assertThat(catalogMainPage.isLanguageSelected(HEBREW.getLabel())).isFalse();
 
-        catalogMainPage.getAllVisibleCourses()
-                .forEach(course -> {
+        assertThat(catalogMainPage.getAllVisibleCourses())
+                .allSatisfy(course -> {
                     assertThat(course.getLanguage()).isNotIn("ARM", "BEL", "HEB");
                 });
     }

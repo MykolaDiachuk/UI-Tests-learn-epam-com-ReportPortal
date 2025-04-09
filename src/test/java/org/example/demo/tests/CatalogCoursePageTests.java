@@ -21,11 +21,10 @@ public class CatalogCoursePageTests extends BaseTest {
         catalogMainPage.selectCheckbox(UP_TO_1_HOUR.getLabel());
         catalogMainPage.selectCheckbox(NOT_DEFINED.getLabel());
 
-        catalogMainPage.getAllVisibleCourses()
-                .forEach(course -> {
+        assertThat(catalogMainPage.getAllVisibleCourses())
+                .allSatisfy(course -> {
                     assertThat(course.getLanguage()).isEqualTo("ENG");
-                    long effortHours = course.getEffort().toHours();
-                    assertThat(effortHours).isBetween(0L, 1L);
+                    assertThat(course.getEffort().toHours()).isBetween(0L, 1L);
                 });
 
         String courseName = "Amazon Aurora Service Primer";
