@@ -27,7 +27,7 @@ public class HomePage extends BasePage {
 
     public void acceptCookies() {
         try {
-            cookieAcceptButton.clickWithJS();
+            cookieAcceptButton.waitUntilClickable().click();
         } catch (NoSuchElementException e) {
             logger.warn("Cookie accept button not found, skipping");
         }

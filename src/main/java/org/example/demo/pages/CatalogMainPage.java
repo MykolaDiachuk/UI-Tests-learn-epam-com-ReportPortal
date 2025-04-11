@@ -1,13 +1,13 @@
 package org.example.demo.pages;
 
 import lombok.Getter;
+import org.example.demo.dtos.CourseDTO;
+import org.example.demo.dtos.parsers.CourseCardParser;
 import org.example.demo.elementcore.elements.PageElement;
 import org.example.demo.elementcore.elements.PageElementCollection;
-import org.example.demo.dtos.CourseDTO;
 import org.example.demo.pages.blocks.FilterChipsBlock;
 import org.example.demo.pages.modals.LanguageSelectionModal;
 import org.example.demo.pages.modals.SkillSelectorModal;
-import org.example.demo.dtos.parsers.CourseCardParser;
 import org.example.demo.utils.selenium.FormatElement;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
+import static org.example.demo.utils.selenium.Waiter.waitForElementsToVanish;
 
 
 public class CatalogMainPage extends BasePage {
@@ -48,30 +50,26 @@ public class CatalogMainPage extends BasePage {
 
     public CatalogMainPage selectCheckbox(String checkboxText) {
         logger.info("Select checkbox: {}", checkboxText);
-        checkboxLabel.format(checkboxText).scrollTo().clickWithJS();
+        checkboxLabel.format(checkboxText).scrollTo().click();
         return this;
     }
 
     public LanguageSelectionModal openLanguageSelectionModal() {
         logger.info("Open language selection modal");
-        languageModal.scrollTo().clickWithJS();
+        languageModal.waitUntilPresent().scrollTo().click();
         return new LanguageSelectionModal();
     }
 
     public SkillSelectorModal openSkillSelectionModal() {
         logger.info("Open skill selection modal");
-        skillSelectionInput.scrollTo().clickWithJS();
+        skillSelectionInput.waitUntilPresent().scrollTo().click();
         return new SkillSelectorModal();
     }
 
     public List<CourseDTO> getAllVisibleCourses() {
         logger.info("Collecting all visible courses info");
 
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitForElementsToVanish(courseCards.getElements());
 
         try {
             return courseCards.waitUntilPresent().getElements().stream()
@@ -85,21 +83,21 @@ public class CatalogMainPage extends BasePage {
 
     public CourseEntityPage goToCourse(String courseName) {
         logger.info("Go to course: {}", courseName);
-        courseTitle.format(courseName).clickWithJS();
+        courseTitle.format(courseName).click();
         return new CourseEntityPage();
     }
 
     public void selectDescentSortBy(String sortItem) {
         logger.info("Select descending sort by: {}", sortItem);
-        sortByButton.scrollTo().clickWithJS();
-        sortDropdownItem.format(sortItem).clickWithJS();
+        sortByButton.waitUntilPresent().scrollTo().click();
+        sortDropdownItem.format(sortItem).click();
     }
 
     public void selectAscentSortBy(String sortItem) {
         logger.info("Select ascending sort by: {}", sortItem);
-        sortByButton.scrollTo().clickWithJS();
-        sortDropdownItem.format(sortItem).clickWithJS();
-        sortDropdownItem.format(sortItem).clickWithJS();
+        sortByButton.waitUntilPresent().scrollTo().click();
+        sortDropdownItem.format(sortItem).click();
+        sortDropdownItem.format(sortItem).click();
     }
 
     public boolean isCheckboxSelected(String label) {

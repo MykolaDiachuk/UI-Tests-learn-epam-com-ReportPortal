@@ -14,7 +14,7 @@ public class FormatElement {
 
     public PageElement format(String value) {
         By locator = asBy(value);
-        return waitForElementToBePresent(locator);
+        return new PageElement(locator);
     }
 
     public By asBy(String value) {

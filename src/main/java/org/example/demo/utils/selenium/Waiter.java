@@ -3,9 +3,7 @@ package org.example.demo.utils.selenium;
 import org.example.demo.elementcore.elements.PageElement;
 import org.example.demo.elementcore.factory.WrapperFactory;
 import org.example.demo.utils.driver.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -70,4 +68,26 @@ public class Waiter {
                 .withTimeout(TIMEOUT)
                 .pollingEvery(POLLING_INTERVAL);
     }
+
+    public static void waitForElementToVanish(WebElement element) {
+        long startTime = System.currentTimeMillis();
+        try {
+            while (element.isDisplayed()) {
+                if (System.currentTimeMillis() - startTime > TIMEOUT.getSeconds()) {
+                    return;
+                }
+                Thread.sleep(200);
+            }
+        } catch (StaleElementReferenceException | NoSuchElementException e) {
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public static void waitForElementsToVanish(List<PageElement> elements) {
+        for (PageElement el : elements) {
+            waitForElementToVanish(el.getElement());
+        }
+    }
+
 }

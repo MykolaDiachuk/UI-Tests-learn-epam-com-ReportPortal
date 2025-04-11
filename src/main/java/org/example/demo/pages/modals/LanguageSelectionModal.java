@@ -26,7 +26,7 @@ public class LanguageSelectionModal extends BasePage {
         logger.info("Select languages: {}", Arrays.toString(languages));
         listOfLanguages.waitUntilPresent().getElements().stream()
                 .filter(element -> isLanguagesContainsText(languages, element.scrollTo().getText()))
-                .forEach(el -> el.scrollTo().clickWithJS());
+                .forEach(el -> el.scrollTo().click());
         return this;
     }
 
@@ -38,7 +38,7 @@ public class LanguageSelectionModal extends BasePage {
 
     public LanguageSelectionModal clickSelect() {
         logger.info("Click select button");
-        selectButton.clickWithJS();
+        selectButton.click();
         return this;
     }
 }

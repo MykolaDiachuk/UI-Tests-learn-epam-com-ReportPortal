@@ -38,12 +38,12 @@ public class SkillSelectorModal extends BasePage {
 
     private void searchSkill(String skillName) {
         logger.info("Searching for skill '{}' in modal", skillName);
-        skillSearchInput.scrollTo().type(skillName, Keys.ENTER);
+        skillSearchInput.waitUntilPresent().scrollTo().type(skillName, Keys.ENTER);
     }
 
     private void selectSkillFromResults(String skillName) {
         logger.info("Selecting skill '{}' from results in modal", skillName);
-        skillLocator.format(skillName).clickWithJS();
+        skillLocator.format(skillName).click();
     }
 
     private void clearSearchInput() {

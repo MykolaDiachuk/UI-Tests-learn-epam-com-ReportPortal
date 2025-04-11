@@ -3,6 +3,7 @@ package org.example.demo.pages.blocks;
 import org.example.demo.elementcore.PageElementDecorator;
 import org.example.demo.elementcore.elements.PageElement;
 import org.example.demo.elementcore.elements.PageElementCollection;
+import org.example.demo.pages.BasePage;
 import org.example.demo.utils.driver.DriverManager;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class FilterChipsBlock {
+public class FilterChipsBlock extends BasePage {
     private final Logger logger = LoggerFactory.getLogger(FilterChipsBlock.class);
 
     @FindBy(css = ".ExploreFilterChips_chip__OAl2H")
@@ -25,10 +26,6 @@ public class FilterChipsBlock {
 
     @FindBy(css = ".ExploreFilterChips_chipCount__j5YiR")
     private PageElement filterChipCount;
-
-    public FilterChipsBlock() {
-        PageFactory.initElements(new PageElementDecorator(DriverManager::getDriver), this);
-    }
 
     public int getFilterCount(String filterName) {
         logger.info("Get filter count for: {}", filterName);

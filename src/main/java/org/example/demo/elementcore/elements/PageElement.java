@@ -22,9 +22,14 @@ public class PageElement implements WebElement {
         this.locator = locator;
     }
 
+    public PageElement( By locator) {
+        this.locator = locator;
+        this.element = waitUntilPresent().getElement();
+    }
+
     public PageElement type(CharSequence... keysToSend) {
         waitUntilPresent();
-        element.sendKeys(keysToSend);
+        refreshElement().sendKeys(keysToSend);
         return this;
     }
 
@@ -35,17 +40,15 @@ public class PageElement implements WebElement {
     }
 
     public PageElement scrollTo() {
-        waitUntilPresent();
         return doJS("arguments[0].scrollIntoView({block: 'center'}); arguments[0].focus();");
     }
 
     public PageElement highlight() {
-        waitUntilPresent();
         return doJS("arguments[0].style.border='3px solid red'");
     }
 
     private PageElement doJS(String script) {
-        ((JavascriptExecutor) DriverManager.getDriver()).executeScript(script, element);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript(script, refreshElement());
         return this;
     }
 
@@ -64,9 +67,9 @@ public class PageElement implements WebElement {
         return this;
     }
 
-    public PageElement refresh() {
+    public WebElement refreshElement() {
         this.element = DriverManager.getDriver().findElement(locator);
-        return this;
+        return element;
     }
 
     public boolean isExist() {
@@ -83,29 +86,29 @@ public class PageElement implements WebElement {
     public void click() {
         highlight();
         waitUntilClickable();
-        element.click();
+        refreshElement().click();
     }
     @Override
     public void submit() {
-        element.submit();
+        refreshElement().submit();
     }
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {
-        element.sendKeys(keysToSend);
+        refreshElement().sendKeys(keysToSend);
     }
     @Override
     public void clear() {
-        element.clear();
+        refreshElement().clear();
     }
     @Override
     public String getTagName() {
-        return element.getTagName();
+        return refreshElement().getTagName();
     }
 
     @Override
     public @Nullable String getAttribute(String name) {
-        return element.getAttribute(name);
+        return refreshElement().getAttribute(name);
     }
 
     @Override
@@ -114,7 +117,7 @@ public class PageElement implements WebElement {
     }
     @Override
     public boolean isEnabled() {
-        return element.isEnabled();
+        return refreshElement().isEnabled();
     }
 
     @Override
@@ -123,7 +126,7 @@ public class PageElement implements WebElement {
     }
     @Override
     public List<WebElement> findElements(By by) {
-        return element.findElements(by);
+        return refreshElement().findElements(by);
     }
 
     @Override
@@ -133,30 +136,30 @@ public class PageElement implements WebElement {
 
     @Override
     public boolean isDisplayed() {
-        return element.isDisplayed();
+        return refreshElement().isDisplayed();
     }
     @Override
     public Point getLocation() {
-        return element.getLocation();
+        return refreshElement().getLocation();
     }
 
     @Override
     public Dimension getSize() {
-        return element.getSize();
+        return refreshElement().getSize();
     }
 
     @Override
     public Rectangle getRect() {
-        return element.getRect();
+        return refreshElement().getRect();
     }
 
     @Override
     public String getCssValue(String propertyName) {
-        return element.getCssValue(propertyName);
+        return refreshElement().getCssValue(propertyName);
     }
 
     @Override
     public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
-        return element.getScreenshotAs(target);
+        return refreshElement().getScreenshotAs(target);
     }
 }
