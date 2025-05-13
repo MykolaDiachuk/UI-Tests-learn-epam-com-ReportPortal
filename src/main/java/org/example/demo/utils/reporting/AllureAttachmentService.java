@@ -16,7 +16,7 @@ public class AllureAttachmentService {
     private static final Logger logger = LoggerFactory.getLogger(AllureAttachmentService.class);
     private static final String LOG_FILE_PATH = "target/report/logs/test.log";
 
-    public static void attachScreenshot() {
+    public static void attachScreenshotToAllure() {
         try {
             byte[] screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
             Allure.addAttachment("Failure Screenshot", "image/png", new ByteArrayInputStream(screenshot), ".png");
@@ -25,7 +25,7 @@ public class AllureAttachmentService {
         }
     }
 
-    public static void attachLogs() {
+    public static void attachLogsToAllure() {
         try {
             byte[] logBytes = Files.readAllBytes(Paths.get(LOG_FILE_PATH));
             Allure.addAttachment("Execution Logs", "text/plain", new ByteArrayInputStream(logBytes), ".log");
